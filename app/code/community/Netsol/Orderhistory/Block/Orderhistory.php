@@ -53,10 +53,8 @@ class Netsol_Orderhistory_Block_Orderhistory extends Mage_Catalog_Block_Product_
     
     /**
      * @description Retrieve collection based on setting
-     *
-     * @param		
-     * @param		
-     * @return	productCollection
+     *	
+     * @return	productIds
      */
     public function predictiveAnalysisBlock()
     {
@@ -70,8 +68,7 @@ class Netsol_Orderhistory_Block_Orderhistory extends Mage_Catalog_Block_Product_
 	/**
 	 * @description: Based on Warranty Period and 
 	 * preditive style of product of product and customer order item history
-	 * 
-	 * @param order item
+
 	 * @return  $productIds
 	 * */
 	 protected function getorderHistoryProducts()
@@ -90,8 +87,7 @@ class Netsol_Orderhistory_Block_Orderhistory extends Mage_Catalog_Block_Product_
 	 * @description: Based on Warranty Period and 
 	 * preditive style of product of product and customer order item history
 	 * 
-	 * @param order item
-	 * @return  $productCollection
+	 * @return  $productIds
 	 * */
 	 protected function _predictiveAnalysisBlock()
 	 {

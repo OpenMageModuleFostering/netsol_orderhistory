@@ -14,26 +14,24 @@
  *
  * @category    Netsol
  * @package     Netsol_Orderhistory
- * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @copyright   Copyright (c) 2016 Netsolutions India (http://www.netsolutions.in)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
  
 class Netsol_Orderhistory_Model_Cron
 {
 	/**
-	  * Limit var for SQL queries
 	  *
-	  * @var integer
-	  * @access protected
+	  * @var number of cron tab
 	  */
 	protected $_numberOfCronTabs = 5;
 	
-	 /**
-	 * @description 
-	 * @param		$observer
-	 * @return		
-	 */
-    public function oneEmailWarrantyProducts() 
+	/**
+	  *	@desciption: Cron job task one trigger based on customers
+	  * @param : $observer
+	  * @return email trigger based on recommendation
+	  */
+    public function oneEmailWarrantyProducts($observer) 
     {
        try 
        {
@@ -49,11 +47,12 @@ class Netsol_Orderhistory_Model_Cron
 			Mage::printException($e);
 	   }
     }
+    
     /**
-	 * @description 
-	 * @param		$observer
-	 * @return		
-	 */
+	  *	@desciption: Cron job task two trigger based on customers
+	  * 
+	  * @return email trigger based on recommendation
+	  */
     public function twoEmailWarrantyProducts($observer) 
     {
        try 
@@ -68,11 +67,12 @@ class Netsol_Orderhistory_Model_Cron
 			Mage::printException($e);
 	   }
     }
-      /**
-	 * @description 
-	 * @param		$observer
-	 * @return		
-	 */
+    
+    /**
+	  *	@desciption: Cron job task three trigger based on customers
+	  * 
+	  * @return email trigger based on recommendation
+	  */
     public function threeEmailWarrantyProducts($observer) 
     {
        try 
@@ -87,11 +87,12 @@ class Netsol_Orderhistory_Model_Cron
 			Mage::printException($e);
 	   }
     }
-      /**
-	 * @description 
-	 * @param		$observer
-	 * @return		
-	 */
+    
+     /**
+	  *	@desciption: Cron job task four trigger based on customers
+	  * 
+	  * @return email trigger based on recommendation
+	  */
     public function fourEmailWarrantyProducts($observer) 
     {
        try 
@@ -106,11 +107,12 @@ class Netsol_Orderhistory_Model_Cron
 			Mage::printException($e);
 	   }
     }
-      /**
-	 * @description 
-	 * @param		$observer
-	 * @return		
-	 */
+    
+    /**
+	  *	@desciption: Cron job task five trigger based on customers
+	  * 
+	  * @return email trigger based on recommendation
+	  */
     public function fiveEmailWarrantyProducts($observer) 
     {
        try 
@@ -139,7 +141,7 @@ class Netsol_Orderhistory_Model_Cron
 			//$numberOfCustomers = Mage::getModel('customer/customer')->getCollection()->getSize(); //Number of customers in websites
 			$customerCollections = Mage::getResourceModel('sales/order_collection')
 									->addAttributeToSelect('status');
-			$customerCollections->getSelect()->order('customer.entity_id')->group('customer.entity_id')->join( array('customer'=> 'customer_entity'),
+			$customerCollections->getSelect()->order('customer.entity_id')->group('customer.entity_id')->join( array('customer'=> Mage::getConfig()->getTablePrefix().'customer_entity'),
 								'customer.entity_id=main_table.customer_id',array('customer.entity_id')); 
 			$customerCollections->addFieldToFilter('main_table.status', 'complete');
 			$numberOfCustomers = count($customerCollections);

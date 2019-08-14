@@ -14,7 +14,7 @@
  *
  * @category    Netsol
  * @package     Netsol_Orderhistory
- * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @copyright   Copyright (c) 2016 Netsolutions India (http://www.netsolutions.in)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
  
@@ -30,12 +30,9 @@ class Netsol_Orderhistory_Model_Orderhistory extends Mage_Core_Model_Abstract
     }
     
     /**
-	 * @description: Resource iterator technique allows 
-	 * you to get each item one by one through the function callback
-	 *  using the walk function in core/resource_iterator
-	 * 
-	 * @param 
-	 * @return  
+	 * @description:  Based on orderhistory of registered user,
+	 * recommend products displayed
+	 * @return  $productIds
 	 * */
 	public function orderIteratorMehod()
 	{
@@ -51,8 +48,11 @@ class Netsol_Orderhistory_Model_Orderhistory extends Mage_Core_Model_Abstract
 		$websiteId = Mage::app()->getWebsite()->getId();
 		$to = date('Y-m-d', $time); // current date
 		$from = date("Y-m-d", strtotime("-".$orderPeriod)); //orders from which period to till date
+		/*** checking the upsell and crossell product collections ***/
 		$crosellProductIds = Mage::getModel('orderhistory/crosssellanalytics')->crossSellIteratorMehod();
 		$upsellProductIds = Mage::getModel('orderhistory/upsellanalytics')->upSellIteratorMehod();
+		/*** checking the upsell and crossell product collections ***/
+		
 		/* Get the collection */
 		$orders = Mage::getResourceModel('sales/order_collection')
 					->addFieldToFilter('customer_id', Mage::getSingleton('customer/session')->getCustomer()->getId())

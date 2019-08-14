@@ -22,7 +22,7 @@
 <config>
   <modules>
     <Netsol_Orderhistory>
-      <version>0.1.0</version>
+      <version>0.1.1</version>
     </Netsol_Orderhistory>
   </modules>
   <frontend>

@@ -14,7 +14,7 @@
  *
  * @category    Netsol
  * @package     Netsol_Orderhistory
- * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @copyright   Copyright (c) 2016 Netsolutions India (http://www.netsolutions.in)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
@@ -24,12 +24,9 @@ class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
 	 
 	 
 	 /**
-	 * @description: Resource iterator technique allows 
-	 * you to get each item one by one through the function callback
-	 *  using the walk function in core/resource_iterator
-	 * 
-	 * @param 
-	 * @return  
+	 * @description:  Based on orderhistory of registered user,
+	 * recommend products is sent to user in email
+	 * @return  $productIds
 	 * */
 	public function orderIterator($eachCronCustomerCount,$start)
 	{
@@ -48,7 +45,7 @@ class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
 			$from = date("Y-m-d", strtotime("-".$orderPeriod)); //orders from which period to till date
 			$customerCollections = Mage::getResourceModel('sales/order_collection')
 									->addAttributeToSelect('status');
-			$customerCollections->getSelect()->order('customer.entity_id')->limit($eachCronCustomerCount,$start)->group('customer.entity_id')->join( array('customer'=> 'customer_entity'),
+			$customerCollections->getSelect()->order('customer.entity_id')->limit($eachCronCustomerCount,$start)->group('customer.entity_id')->join( array('customer'=> Mage::getConfig()->getTablePrefix().'customer_entity'),
 								'customer.entity_id=main_table.customer_id',array('customer.entity_id')); 
 			$customerCollections->addFieldToFilter('main_table.status', 'complete');
 			
@@ -72,8 +69,7 @@ class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
 						$orderItemIds[$j][$pid]= $orderCreatedAt; // collection order item id
 					}
 				}
-				//echo "<pre>";
-				//print_r($orderItemIds);
+
 				/***Collection of order item ids end**/
 				if(!empty($orderItemIds[$j])) {
 					$orderProductId = array_keys($orderItemIds[$j]);
@@ -134,6 +130,10 @@ class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
 
 	}
 	
+	/**
+	 * @description:  Based on orderhistory of registered user,
+	 * recommend products is sent to user in email
+	 * */
 	protected function predictiveAnalysisEmail($pids = array())
 	{
 		try {
@@ -160,7 +160,7 @@ class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
 					$productIdsDiff = array_diff($pids[$cid],$productIds);
 					
 					if(!empty($productIdsDiff)) { 
-						
+						/***Recommendation email based on orderhistory to registered user **/
 						$emailVars = array('customer_name' => $customerName,' customer_email' => $customerEmail,'products' => $productIdsDiff);
 						$emailTemplate  = Mage::getModel('core/email_template')->loadDefault(  Mage::getStoreConfig(self::XML_PATH_PREDICTIVE_EMAIL_TEMPLATE));
 						$sender =  Mage::getStoreConfig(self::XML_PATH_PREDICTIVE_EMAIL_IDENTITY);
@@ -182,12 +182,13 @@ class Netsol_Orderhistory_Helper_Orderhistory extends Mage_Core_Helper_Abstract
 							/**CustomerEmail records according product id with sent email flag**/
 							
 						}
+						/***Recommendation email based on orderhistory to registered user **/
 					}
 					
 					
 				}
 			}
-			//$paCustomerEmailTempModel = Mage::getModel('predictiveanalytics/patemp');
+
 		} catch(Exception $e) {
 			echo $e->getMessage(); die;
 		}
