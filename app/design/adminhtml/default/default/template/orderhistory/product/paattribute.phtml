@@ -1,0 +1,95 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Netsol
+ * @package     Netsol_Orderhistory
+ * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+$_htmlId = $this->getElement()->getHtmlId();
+$_htmlClass = $this->getElement()->getClass();
+$_htmlName = $this->getElement()->getName();
+$_readonly = $this->getElement()->getReadonly();
+$warranty_period = $this->getElement()->getValue();
+$warranty_period_array = explode("-",$warranty_period); 
+
+?>
+<tr> <!-- should be wrapped in a tr element to fit in the admin template -->
+    <td class="label"><?php echo $this->getElement()->getLabel(); ?></td>
+    <td colspan="10" class="grid">
+        <table cellspacing="0" class="data border">
+
+            <thead>
+            <tr class="headings">
+                <th><?php echo $this->__('Warranty years')?></th>
+                <th><?php echo $this->__('Warranty months')?></th>
+                <th><?php echo $this->__('Warranty days')?></th>
+            </tr>
+            </thead>
+            <tbody id="<?php echo $_htmlId; ?>_container"></tbody>
+            <tfoot>
+            <tr>
+             <td>   
+				 <select class="select" title ="Please select years" name="<?php echo $_htmlName; ?>[warranty_years]" id="warranty_years">
+					<?php 
+							for($i=0;$i<=20;$i++){
+								if($i == 0) {?>	
+									<option value="<?php echo $i; ?>" <?php if($warranty_period_array[0] == $i) echo 'selected="selected"';?>>Please select</option>
+								<?php }
+								else { ?>
+									<option value="<?php echo $i; ?>" <?php if($warranty_period_array[0] == $i) echo 'selected="selected"';?>><?php echo $i; ?></option>
+								<?php }
+							}?>
+                </select>
+            </td>
+            <td>   
+				 <select class="select"  title ="Please select months" name="<?php echo $_htmlName; ?>[warranty_months]"id="warranty_months">
+					<?php 	
+							for($j=0;$j<=12;$j++) { 
+								if($j == 0) {?>	
+									<option value="<?php echo $j; ?>" <?php if($warranty_period_array[1] == $j) echo 'selected="selected"';?>>Please select</option>
+								<?php }
+								else { ?>
+									<option value="<?php echo $j; ?>" <?php if($warranty_period_array[1] == $j) echo 'selected="selected"';?>><?php echo $j; ?></option>
+					<?php			 }
+						    }
+					 ?>
+                </select>
+            </td>
+             <td>   
+				 <select class="select"  title ="Please select days" name="<?php echo $_htmlName; ?>[warranty_days]" id="warranty_days">
+					<?php 	
+							for($k=0;$k<=31;$k++){
+								if($k == 0) {?>	
+									<option value="<?php echo $k; ?>" <?php if($warranty_period_array[2] == $k) echo 'selected="selected"';?>>Please select</option>
+								<?php }
+								else { ?>	
+									<option value="<?php echo $k; ?>" <?php if($warranty_period_array[2] == $k) echo 'selected="selected"';?>><?php echo $k; ?></option>
+					<?php		}
+							}
+					 ?>
+                </select>
+            </td>
+            </tr>
+            <tr>
+				<td colspan = "3">
+					  <p class="note">Please select warranty period (years, months, days), according to this period this product will display in recommendation.
+					  </p>
+				</td>
+			</tr>
+            </tfoot>
+        </table>
+    </td>
+</tr>

@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Netsol_Orderhistory",
+    "type": "magento-module",
+    "license": "OSL",
+    "homepage": "",
+    "description": "Recommend products on the basis of expiration of life cycle  of the products.",
+    "authors": [
+    {
+        "name": "Netsolutions",
+        "email": "marketing@netsolutionsindia.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

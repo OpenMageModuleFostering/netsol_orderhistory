@@ -1,0 +1,98 @@
+<?xml version="1.0"?>  
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Netsol
+ * @package     Netsol_Orderhistory
+ * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+--> 
+<layout version="0.1.0">   
+	<cms_index_index>
+		<reference name="head">
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/owl.carousel.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/owl.theme.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/paseasons.css</name></action>		
+			<action method="addItem"><type>skin_css</type><name>css/netsol/orderhistory/orderhistory.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enabled_jquery"><type>skin_js</type><name>js/netsol/orderhistory/jquery-1.10.2.min.js</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_js</type><name>js/netsol/orderhistory/noconflict.js</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_js</type><name>js/netsol/orderhistory/owl.carousel.js</name></action>
+		</reference>
+		<reference name="right">
+			<block type="orderhistory/orderhistory" before="-"
+			name="custom_paright" template="orderhistory/paright.phtml">
+			</block>
+		</reference>
+		<reference name="left">
+			<block type="orderhistory/orderhistory" before="-"
+			name="custom_paright" template="orderhistory/paright.phtml">
+			</block>
+		</reference>
+		<reference name="content">
+			<block type="orderhistory/orderhistory" name="custom_pacontent" as="custom_pacontent" template="orderhistory/pacontent.phtml" />
+		</reference>
+	</cms_index_index>
+	<catalog_product_view>
+		<reference name="head">
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/owl.carousel.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/orderhistory.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enabled_jquery"><type>skin_js</type><name>js/netsol/orderhistory/jquery-1.10.2.min.js</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_js</type><name>js/netsol/orderhistory/noconflict.js</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_js</type><name>js/netsol/orderhistory/owl.carousel.js</name></action>
+		</reference>
+		<reference name="right">
+			<block type="orderhistory/orderhistory" before="-"
+			name="custom_paright" template="orderhistory/paright.phtml">
+			</block>
+		</reference>
+		<reference name="left">
+			<block type="orderhistory/orderhistory" before="-"
+			name="custom_paright" template="orderhistory/paright.phtml">
+			</block>
+		</reference>
+		<reference name="content">
+			<block type="orderhistory/orderhistory"  name="custom_pacontent" as="custom_pacontent" template="orderhistory/pacontent.phtml" />
+		</reference>
+	</catalog_product_view>
+	<checkout_cart_index>
+		<reference name="head">
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/owl.carousel.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_css</type><name>css/netsol/orderhistory/orderhistory.css</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enabled_jquery"><type>skin_js</type><name>js/netsol/orderhistory/jquery-1.10.2.min.js</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_js</type><name>js/netsol/orderhistory/noconflict.js</name></action>
+			<action method="addItem" ifconfig="pa_orderhistorysetting/paorderhistory/enable"><type>skin_js</type><name>js/netsol/orderhistory/owl.carousel.js</name></action>
+		</reference>
+		<reference name="right">
+			<block type="orderhistory/orderhistory" before="-"
+			name="custom_paright" template="orderhistory/paright.phtml">
+			</block>
+		</reference>
+		<reference name="left">
+			<block type="orderhistory/orderhistory" before="-"
+			name="custom_paright" template="orderhistory/paright.phtml">
+			</block>
+		</reference>
+		<reference name="content">
+			<block type="orderhistory/orderhistory"  name="custom_pacontent" as="custom_pacontent" template="orderhistory/pacontent.phtml" />
+		</reference>
+	</checkout_cart_index>
+	<!--
+Email layouts section
+-->
+    <orderhistory_email_items>
+        <block type="orderhistory/orderhistory" name="netsol_email_items" template="orderhistory/email/items.phtml"></block>
+    </orderhistory_email_items>
+</layout>   
+	

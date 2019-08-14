@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Netsol_Orderhistory>
+      <active>true</active>
+      <codePool>community</codePool>
+      <version>0.1.0</version>
+      <comment>Before disable/uninstall this module also delete attribute warranty_period otherwise the website will display error..</comment>
+    </Netsol_Orderhistory>
+  </modules>
+</config>

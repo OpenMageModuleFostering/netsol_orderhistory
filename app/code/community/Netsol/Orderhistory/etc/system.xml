@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Netsol
+ * @package     Netsol_Orderhistory
+ * @copyright   Copyright (c) 2016 Netsolutions India (http://www.netsolutions.in)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+	<tabs>
+		<netsol translate="label" module="orderhistory">
+			<label>Net Solutions</label>
+			<sort_order>0</sort_order>
+		</netsol>
+	</tabs>
+	<sections>
+		<pa_orderhistorysetting translate="label" module="orderhistory">                    
+			<label>Personalytics Orderhistory</label>
+			<tab>netsol</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>0</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>            
+			<groups>
+				<paorderhistory translate="label"> 
+					<label>Orderhistory Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>To enable module.  Note: Before disable/uninstall this module also delete attribute warranty_period(Please read document).</comment>
+						</enable>
+						<orderhistory_analytics_heading translate="label">
+							<label>Personalytics Orderhistory heading</label>
+							<comment>Heading for personalytics  orderhistory block.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>required-entry</validate>
+						</orderhistory_analytics_heading>
+						<home_page_position_of_block translate="label">
+							<label>Home page block position</label>
+							<comment>Base on your page layout (1column.phtml,2columns-left.phtml,2columns-right.phtml) block will display on selected position.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>orderhistory/system_config_source_positionoption</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</home_page_position_of_block>
+						<product_detail_position_of_block translate="label">
+							<label>Product detail page block position</label>
+							<comment>Base on your page layout (1column.phtml,2columns-left.phtml,2columns-right.phtml) block will display on selected position.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>orderhistory/system_config_source_positionoption</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_detail_position_of_block>
+						<cart_page_position_of_block translate="label">
+							<label>Cart page block position</label>
+							<comment>Base on your page layout (1column.phtml,2columns-left.phtml,2columns-right.phtml) block will display on selected position.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>orderhistory/system_config_source_positionoption</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cart_page_position_of_block>
+						<max_product_count translate="label">
+							<label>Maximum product count to display</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>This field is required and allowed only numbers (limit should be min 1 and max 20)</comment>
+							<validate>required-entry validate-digits-range digits-range-1-20</validate>
+						</max_product_count>
+						<warranty_period_default_value>
+							<label>Warranty period default value</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default warranty period value in Y-m-d format. Example "0-1-0" where date is 0 years, 1 month, 0 days .</comment>
+						</warranty_period_default_value>
+						<order_history_period translate="label">
+							<label>Order history period</label>
+							<comment>How many months orders to be considered.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>orderhistory/system_config_source_orderperiod</source_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_history_period>
+						<time_period_to_display_product translate="label">
+							<label>Time period to display product</label>
+							<comment>For how many days product will display in frontend, value should be min 15.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>required-entry validate-digits-range digits-range-15-1000</validate>
+						</time_period_to_display_product>
+						<enabled_jquery translate="label">
+							<label>Enable embeded jquery</label>
+							<comment>To enable "jquery-1.10.2.min.js" jquery.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled_jquery>		
+						<crosssell_enable translate="label">
+							<label>Recommend crosssell products</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>To recommend crosssell products.</comment>
+						</crosssell_enable>	
+						<upsell_enable translate="label">
+							<label>Recommend upsell products</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>To recommend upsell products.</comment>
+						</upsell_enable>
+						<orderhistory_email translate="label">
+							<label>Email template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template</source_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</orderhistory_email>
+						<orderhistory_email_email_sender translate="label">
+							<label>Email sender</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_identity</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</orderhistory_email_email_sender>	
+						<email_trigger_days translate="label">
+							<label>Send email before warranty expires in days</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>No. of days before warranty period expires to send email notification to user.</comment>
+							<validate>required-entry validate-digits-range digits-range-1-30</validate>
+						</email_trigger_days>				
+					</fields>
+				</paorderhistory>
+			</groups>
+		</pa_orderhistorysetting>
+	</sections>
+</config>

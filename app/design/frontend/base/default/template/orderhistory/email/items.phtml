@@ -1,0 +1,74 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Netsol
+ * @package     Netsol_Orderhistory
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php  $productIds = $this->getProducts();
+	   $count = count($products);
+	   $_columnCount = 3;
+ ?>	    
+		<?php $i=0; foreach($productIds as $productId) {
+				$product = Mage::getModel('catalog/product')->load($productId);
+				$_imgSize = $count > 4 ? "300" : "150";
+				$styleValue = "clear: inherit !important;  margin-right: inherit !important;";
+				$style = $count > 4 ? "" : $styleValue;
+			?>    
+		<?php if ($i++%$_columnCount==0): ?>
+		<tr bgcolor="#FFFFFF">	
+			<td>
+				<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+					<tr>
+		<?php endif; ?>
+			
+						<td>
+							<table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+								<tr><td valign="middle" align="center" > 
+									<a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="product-image-pa">
+										<img style="width:180px;"src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($_imgSize); ?>" alt=""/>
+								   </a></td>
+								</tr>
+								<tr><td height="16"></td></tr>
+								<tr><td style="font-size:18px; line-height:22px; color:#02c8db; text-align:center;"><a href="#" style="font-size:16px; line-height:22px; color:#362f2d; text-decoration:none;"><b><a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $product->getName(); ?></a></b></a></td></tr>
+								<tr><td height="12"></td></tr>
+								<tr><td style="font-size:16px; line-height:22px; color:#c7b299; text-align:center;"><?php echo $this->getPriceHtml($product, true);?></td></tr>
+								<tr><td height="5"></td></tr>
+							</table>
+						</td>
+						<td  align="center">
+							<table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+									<tr><td height="15"></td></tr>
+									<tr><td height="270"><img src="<?php echo $this->getSkinUrl('images/netsol/orderhistory/email/dot-line.png');?>" height="270"></td></tr>
+									<tr><td height="30"></td></tr>
+							</table>
+						</td>
+					
+        <?php if ($i%$_columnCount==0 || $i==$count): ?>
+					</tr>
+				</table>
+			</td>
+			<td width="20"></td>
+        </tr>
+        <?php endif; ?>
+      <?php } ?>  
+<script type="text/javascript">decorateTable('my-orders-table', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']})</script>

@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Netsol
+ * @package     Netsol_Orderhistory
+ * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+  <modules>
+    <Netsol_Orderhistory>
+      <version>0.1.0</version>
+    </Netsol_Orderhistory>
+  </modules>
+  <frontend>
+    <routers>
+      <orderhistory>
+        <use>standard</use>
+          <args>
+            <module>Netsol_Orderhistory</module>
+            <frontName>orderhistory</frontName>
+          </args>
+      </orderhistory>
+    </routers>
+    
+		<layout>
+		  <updates>
+			<orderhistory>
+			  <file>orderhistory.xml</file>
+			</orderhistory>
+		  </updates>
+		</layout>
+		
+		<events>
+			<controller_action_layout_generate_blocks_after>
+				<observers>
+					<unset_orderhistorylayout_observer>
+						<type>singleton</type>
+						<class>Netsol_Orderhistory_Model_Observer</class>
+						<method>unsetOrderhistorylayoutBlocks</method>
+					</unset_orderhistorylayout_observer>
+				</observers>
+			</controller_action_layout_generate_blocks_after>
+		</events>		
+  </frontend>
+  
+  <global>
+	<resources>
+	  <netsol_order_setup>
+		<setup>
+		  <module>Netsol_Orderhistory</module>
+		  <class>Mage_Eav_Model_Entity_Setup</class>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </netsol_order_setup>
+	  <netsol_order_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </netsol_order_write>
+	  <netsol_order_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </netsol_order_read>
+	</resources>
+	
+	<models>
+		<orderhistory>
+			<class>Netsol_Orderhistory_Model</class>
+			<resourceModel>orderhistory_mysql4</resourceModel>
+		</orderhistory>
+		<orderhistory_mysql4>
+			 <class>Netsol_Orderhistory_Model_Mysql4</class>
+			 <entities>
+				 <patempentry>
+				   <table>netsol_paemail_entries</table>
+				 </patempentry>
+			  </entities>
+		</orderhistory_mysql4>
+	</models>
+	
+    <helpers>
+      <orderhistory>
+        <class>Netsol_Orderhistory_Helper</class>
+      </orderhistory>
+    </helpers>
+    
+	<blocks>
+	  <orderhistory>
+		<class>Netsol_Orderhistory_Block</class>
+	  </orderhistory>
+	</blocks>
+	
+	<template>
+			<email>
+				<pa_orderhistorysetting_paorderhistory_orderhistory_email translate="label" module="orderhistory">
+                    <label>Netsol Orderhistory email</label>
+                    <file>netsol/netsol_paorderhistory_email.html</file>
+                    <type>html</type>
+                </pa_orderhistorysetting_paorderhistory_orderhistory_email>
+			</email>
+	</template>
+	
+  <!-- -->
+ 
+  </global>
+  <crontab>
+        <jobs>
+            <pa_recommend_email_cronone>
+                <schedule><cron_expr>0 0 * * *</cron_expr></schedule>
+                <run><model>orderhistory/cron::oneEmailWarrantyProducts</model></run>
+            </pa_recommend_email_cronone>
+            <pa_recommend_email_crontwo>
+                <schedule><cron_expr>0 1 * * *</cron_expr></schedule>
+                <run><model>orderhistory/cron::twoEmailWarrantyProducts</model></run>
+            </pa_recommend_email_crontwo>
+             <pa_recommend_email_cronthree>
+                <schedule><cron_expr>0 2 * * *</cron_expr></schedule>
+                <run><model>orderhistory/cron::threeEmailWarrantyProducts</model></run>
+            </pa_recommend_email_cronthree>
+             <pa_recommend_email_cronfour>
+                <schedule><cron_expr>0 3 * * *</cron_expr></schedule>
+                <run><model>orderhistory/cron::fourEmailWarrantyProducts</model></run>
+            </pa_recommend_email_cronfour>
+            <pa_recommend_email_cronfive>
+                <schedule><cron_expr>0 4 * * *</cron_expr></schedule>
+                <run><model>orderhistory/cron::fiveEmailWarrantyProducts</model></run>
+            </pa_recommend_email_cronfive>
+        </jobs>
+    </crontab>
+   
+  <admin>
+	<routers>
+	  <orderhistory>
+	    <use>admin</use>
+		<args>
+		  <module>Netsol_Orderhistory</module>
+		  <frontName>admin_orderhistory</frontName>
+		</args>
+	  </orderhistory>
+	</routers>
+  </admin>
+  
+  <adminhtml>
+	  
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<orderhistory translate="title" module="orderhistory">
+			  <title>Personalytics</title>
+			  <sort_order>1000</sort_order>
+			</orderhistory>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	
+	<layout>
+	  <updates>
+		<orderhistory>
+		  <file>orderhistory.xml</file>
+		</orderhistory>
+	  </updates>
+	</layout>
+	
+	<events>
+		<adminhtml_catalog_product_edit_prepare_form><!-- event needed to add a template to a certain attribute -->
+			<observers>
+				<orderhistory>
+					<class>Netsol_Orderhistory_Model_Observer</class>
+					<method>convertCustomValues</method>
+				</orderhistory>
+			</observers>
+        </adminhtml_catalog_product_edit_prepare_form>
+		<controller_action_layout_load_before>
+			<observers>
+				<orderhistory_adminhtml_custom_layout>
+					<class>Netsol_Orderhistory_Model_Observer</class>
+					<method>addAdminCustomLayoutHandle</method>
+				</orderhistory_adminhtml_custom_layout>
+			</observers>
+		</controller_action_layout_load_before>
+	</events>
+	
+  </adminhtml>
+  
+  	<default>
+		<pa_orderhistorysetting>
+			<paorderhistory>
+				<max_product_count>10</max_product_count>
+				<warranty_period_default_value>0-0-15</warranty_period_default_value>
+				<time_period_to_display_product>15</time_period_to_display_product>
+				<orderhistory_analytics_heading>You may also be interested in the following recommended product(s)</orderhistory_analytics_heading>
+				<orderhistory_email_sender>general</orderhistory_email_sender>
+                <orderhistory_email>pa_orderhistorysetting_paorderhistory_orderhistory_email</orderhistory_email>
+				<email_trigger_days>15</email_trigger_days>
+			</paorderhistory>
+		</pa_orderhistorysetting>
+	</default>
+</config> 
