@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Netsol_Orderhistory",
+    "name": "openmage-module-fostering\/netsol_orderhistory",
     "type": "magento-module",
-    "license": "OSL",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Recommend products on the basis of expiration of life cycle  of the products.",
     "authors": [
